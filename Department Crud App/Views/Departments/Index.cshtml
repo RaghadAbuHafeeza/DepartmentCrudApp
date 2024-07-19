@@ -1,0 +1,45 @@
+﻿@model List<Department>
+
+<div class="text-end">
+    <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">Create</a>
+</div>
+
+@if (!Model.Any())
+{
+	<div class="card-body">
+		<tr>
+			<td colspan="2">
+				<div class="alert alert-warning alert-dismissible">
+					<h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+					No Data Found
+				</div>
+			</td>
+		</tr>
+	</div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Department Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-controller="Departments" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <a asp-controller="Departments" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
